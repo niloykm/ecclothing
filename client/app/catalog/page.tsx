@@ -40,38 +40,24 @@ export default function CatalogPage() {
     const FALLBACK_CATEGORIES = [
       {
         id: "1",
-        name: "Electronics",
-        slug: "electronics",
-        description: "Tech gadgets and devices",
-        productCount: 6,
+        name: "Apparel",
+        slug: "apparel",
+        description: "Curated dresses, shirts, suits, and everyday denim",
+        productCount: 5,
       },
       {
         id: "2",
-        name: "Furniture",
-        slug: "furniture",
-        description: "Office and home furniture",
-        productCount: 1,
+        name: "Footwear",
+        slug: "footwear",
+        description: "Handcrafted dress shoes, street sneakers, and runners",
+        productCount: 3,
       },
       {
         id: "3",
         name: "Accessories",
         slug: "accessories",
-        description: "Tech accessories and add-ons",
+        description: "Artisan leather bags, sunglasses, opticals, and headphones",
         productCount: 4,
-      },
-      {
-        id: "4",
-        name: "Lighting",
-        slug: "lighting",
-        description: "Desk and ambient lighting",
-        productCount: 1,
-      },
-      {
-        id: "5",
-        name: "Office",
-        slug: "office",
-        description: "Office supplies and organizers",
-        productCount: 1,
       },
     ];
     async function loadCategories() {

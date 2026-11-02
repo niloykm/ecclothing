@@ -4,6 +4,7 @@
     "target": "es2020",
     "noImplicitAny": false,
     "sourceMap": true,
+    "rootDir": "src",
     "outDir": "dist",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

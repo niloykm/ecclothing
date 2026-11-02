@@ -90,7 +90,7 @@ export class EngagementService {
   }) {
     const product = await this.productRepo.findOneBy({ id: productId });
     if (!product) throw new Error("Product not found");
-    if (product.inventory_count > 0) throw new Error("Stock is available");
+    if (product.stock > 0) throw new Error("Stock is available");
     // prevent duplicate for same email/user+product
     const existing = email
       ? await this.stockReqRepo.findOneBy({ email, product_id: productId })

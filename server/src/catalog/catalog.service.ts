@@ -122,62 +122,130 @@ export class CatalogService {
   async seedIfEmpty() {
     const cats = await this.categoryRepo.count();
     if (cats === 0) {
-      const dress = this.categoryRepo.create({
-        name: "Dress",
-        slug: "dress",
+      const apparel = this.categoryRepo.create({
+        name: "Apparel",
+        slug: "apparel",
         attribute_schema: {
-          age: ["Kids", "Teen", "Adult"],
-          gender: ["Male", "Female", "Unisex"],
+          size: ["XS", "S", "M", "L", "XL"],
+          gender: ["Men", "Women", "Unisex"],
         },
       });
-      const watch = this.categoryRepo.create({
-        name: "Watch",
-        slug: "watch",
+      const footwear = this.categoryRepo.create({
+        name: "Footwear",
+        slug: "footwear",
         attribute_schema: {
-          material: ["Leather", "Steel", "Plastic"],
-          type: ["Analog", "Digital", "Smart"],
+          size: ["38", "39", "40", "41", "42", "43", "44"],
+          type: ["Dress", "Sneakers", "Runners"],
         },
       });
-      await this.categoryRepo.save([dress, watch]);
+      const accessories = this.categoryRepo.create({
+        name: "Accessories",
+        slug: "accessories",
+        attribute_schema: {
+          category: ["Bags", "Eyewear", "Audio"],
+        },
+      });
+      await this.categoryRepo.save([apparel, footwear, accessories]);
     }
     const prodCount = await this.productRepo.count();
     if (prodCount === 0) {
-      const dressCat = await this.categoryRepo.findOneBy({ name: "Dress" });
-      const watchCat = await this.categoryRepo.findOneBy({ name: "Watch" });
+      const apparelCat = await this.categoryRepo.findOneBy({ slug: "apparel" });
+      const footwearCat = await this.categoryRepo.findOneBy({ slug: "footwear" });
+      const accessoriesCat = await this.categoryRepo.findOneBy({ slug: "accessories" });
 
-      const p1 = this.productRepo.create({
-        name: "Elegant Summer Dress",
-        slug: "elegant-summer-dress",
-        description: "A beautiful floral dress perfect for summer outings.",
-        sku: "DRESS-001",
-        category_id: dressCat.id,
-        price: 49.99,
-        originalPrice: 69.99,
-        stock: 50,
-        image:
-          "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
-        rating: 4.5,
-        reviewCount: 12,
-        tags: ["dress", "summer", "floral"],
-        attributes: { age: "Adult", gender: "Female" },
-      });
-      const p2 = this.productRepo.create({
-        name: "Classic Steel Watch",
-        slug: "classic-steel-watch",
-        description:
-          "Timeless analog watch with a durable stainless steel band.",
-        sku: "WATCH-001",
-        category_id: watchCat.id,
-        price: 199.99,
-        stock: 10,
-        image:
-          "https://images.unsplash.com/photo-152327533bc68-675097457351?auto=format&fit=crop&w=800&q=80",
-        rating: 4.8,
-        reviewCount: 45,
-        tags: ["watch", "classic", "steel"],
-        attributes: { material: "Steel", type: "Analog" },
-      });
-      await this.productRepo.save([p1, p2]);
+      const products = [
+        this.productRepo.create({
+          name: "Pure Silk Summer Floral Dress",
+          slug: "pure-silk-summer-floral-dress",
+          description: "Graceful floral silk summer dress featuring effortless drape and timeless silhouettes.",
+          sku: "DRS-001",
+          category_id: apparelCat.id,
+          price: 129.99,
+          originalPrice: 169.99,
+          stock: 45,
+          image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/dress.jpg",
+          rating: 4.8,
+          reviewCount: 234,
+          tags: ["dress", "silk", "floral", "summer"],
+          attributes: { size: "M", gender: "Women" },
+        }),
+        this.productRepo.create({
+          name: "Classic Tailored Oxford Shirt",
+          slug: "classic-tailored-oxford-shirt",
+          description: "Structured breathable cotton oxford shirt tailored for clean lines and all-day comfort.",
+          sku: "SHT-001",
+          category_id: apparelCat.id,
+          price: 69.99,
+          originalPrice: 89.99,
+          stock: 38,
+          image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/shirt.jpg",
+          rating: 4.7,
+          reviewCount: 164,
+          tags: ["shirt", "cotton", "formal", "oxford"],
+          attributes: { size: "L", gender: "Men" },
+        }),
+        this.productRepo.create({
+          name: "Bespoke Navy Wool Suit",
+          slug: "bespoke-navy-wool-suit",
+          description: "Precision-tailored two-piece wool suit with pick-stitched lapels and natural horn buttons.",
+          sku: "SUT-001",
+          category_id: apparelCat.id,
+          price: 389.99,
+          originalPrice: 489.99,
+          stock: 18,
+          image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/suit.jpg",
+          rating: 4.9,
+          reviewCount: 112,
+          tags: ["suit", "wool", "tailored", "luxury"],
+          attributes: { size: "XL", gender: "Men" },
+        }),
+        this.productRepo.create({
+          name: "Blake-Stitched Leather Derby Shoes",
+          slug: "blake-stitched-leather-derby-shoes",
+          description: "Handcrafted calfskin leather dress shoes with durable Blake-stitched outsoles.",
+          sku: "SHO-001",
+          category_id: footwearCat.id,
+          price: 179.99,
+          originalPrice: 220.0,
+          stock: 29,
+          image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/shoes.jpg",
+          rating: 4.8,
+          reviewCount: 198,
+          tags: ["footwear", "leather", "shoes", "formal"],
+          attributes: { size: "42", type: "Dress" },
+        }),
+        this.productRepo.create({
+          name: "Minimalist Court Street Sneakers",
+          slug: "minimalist-court-street-sneakers",
+          description: "Clean monochromatic low-top sneakers in Italian full-grain leather with cushioned soles.",
+          sku: "SNK-001",
+          category_id: footwearCat.id,
+          price: 139.99,
+          originalPrice: 160.0,
+          stock: 64,
+          image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/sneakers.jpg",
+          rating: 4.7,
+          reviewCount: 310,
+          tags: ["sneakers", "streetwear", "casual", "footwear"],
+          attributes: { size: "41", type: "Sneakers" },
+        }),
+        this.productRepo.create({
+          name: "Artisan Leather Commuter Backpack",
+          slug: "artisan-leather-commuter-backpack",
+          description: "Full-grain water-resistant leather backpack with padded 16-inch laptop compartment.",
+          sku: "BCK-001",
+          category_id: accessoriesCat.id,
+          price: 189.99,
+          originalPrice: 249.99,
+          stock: 24,
+          image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/backpack.jpg",
+          rating: 4.9,
+          reviewCount: 220,
+          tags: ["backpack", "leather", "commuter", "accessories"],
+          attributes: { category: "Bags" },
+        }),
+      ];
+      await this.productRepo.save(products);
     }
   }
 }

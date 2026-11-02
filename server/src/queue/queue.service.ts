@@ -17,7 +17,12 @@ export async function initQueue() {
     // dynamic require to keep dependencies optional
     const IORedis = require("ioredis");
     const { Queue, QueueScheduler } = require("bullmq");
-    const client = new IORedis(REDIS_URL);
+    const client = new IORedis(REDIS_URL, {
+      maxRetriesPerRequest: 1,
+      retryStrategy: () => null,
+      enableOfflineQueue: false,
+    });
+    client.on("error", () => {});
     await client.ping();
     const scheduler = new QueueScheduler("notifications", {
       connection: client,

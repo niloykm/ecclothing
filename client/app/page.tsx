@@ -1,6 +1,70 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles, ShieldCheck, Truck } from "lucide-react";
+
+const FEATURED_PRODUCTS = [
+  {
+    id: "1",
+    name: "Pure Silk Summer Floral Dress",
+    slug: "pure-silk-summer-floral-dress",
+    description: "Graceful floral silk summer dress featuring effortless drape and timeless silhouettes.",
+    price: 129.99,
+    originalPrice: 169.99,
+    image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/dress.jpg",
+    category: "Apparel",
+  },
+  {
+    id: "2",
+    name: "Classic Tailored Oxford Shirt",
+    slug: "classic-tailored-oxford-shirt",
+    description: "Structured breathable cotton oxford shirt tailored for clean lines and all-day comfort.",
+    price: 69.99,
+    originalPrice: 89.99,
+    image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/shirt.jpg",
+    category: "Apparel",
+  },
+  {
+    id: "3",
+    name: "Bespoke Navy Wool Suit",
+    slug: "bespoke-navy-wool-suit",
+    description: "Precision-tailored two-piece wool suit with pick-stitched lapels and natural horn buttons.",
+    price: 389.99,
+    originalPrice: 489.99,
+    image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/suit.jpg",
+    category: "Apparel",
+  },
+  {
+    id: "4",
+    name: "Blake-Stitched Leather Derby Shoes",
+    slug: "blake-stitched-leather-derby-shoes",
+    description: "Handcrafted calfskin leather dress shoes with durable Blake-stitched outsoles.",
+    price: 179.99,
+    originalPrice: 220.0,
+    image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/shoes.jpg",
+    category: "Footwear",
+  },
+  {
+    id: "5",
+    name: "Minimalist Court Street Sneakers",
+    slug: "minimalist-court-street-sneakers",
+    description: "Clean monochromatic low-top sneakers in Italian full-grain leather with cushioned soles.",
+    price: 139.99,
+    originalPrice: 160.0,
+    image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/sneakers.jpg",
+    category: "Footwear",
+  },
+  {
+    id: "6",
+    name: "Artisan Leather Commuter Backpack",
+    slug: "artisan-leather-commuter-backpack",
+    description: "Full-grain water-resistant leather backpack with padded 16-inch laptop compartment.",
+    price: 189.99,
+    originalPrice: 249.99,
+    image: "https://res.cloudinary.com/demo/image/upload/w_800,h_800,c_fill,q_auto,f_auto/backpack.jpg",
+    category: "Accessories",
+  },
+];
 
 export default function Home() {
   return (
@@ -10,11 +74,11 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
-              Discover Your Next Favorite Product
+              Discover Your Next Favorite Style
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground text-balance">
-              Browse our curated collection of premium products. Fast shipping,
-              secure checkout, and exceptional customer service.
+              Browse our curated collection of premium apparel, footwear, and accessories. Fast shipping,
+              secure checkout, and exceptional craftsmanship.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link href="/catalog">
@@ -45,41 +109,64 @@ export default function Home() {
               Featured Products
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Explore our handpicked selection of trending products loved by our
+              Explore our handpicked selection of trending fashion and accessories loved by our
               customers
             </p>
           </div>
 
-          {/* Products Grid Placeholder */}
+          {/* Products Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div
-                key={i}
-                className="rounded-lg border border-border bg-card overflow-hidden hover:shadow-lg transition-shadow"
+            {FEATURED_PRODUCTS.map((prod) => (
+              <Link
+                key={prod.id}
+                href={`/catalog`}
+                className="group rounded-lg border border-border bg-card overflow-hidden hover:shadow-lg transition-all flex flex-col"
               >
-                {/* Image Placeholder */}
-                <div className="w-full h-64 bg-muted flex items-center justify-center">
-                  <div className="text-muted-foreground text-sm">
-                    Product Image
-                  </div>
+                {/* Product Image */}
+                <div className="relative w-full aspect-square bg-muted overflow-hidden">
+                  <Image
+                    src={prod.image}
+                    alt={prod.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  {prod.originalPrice && prod.originalPrice > prod.price && (
+                    <span className="absolute top-3 right-3 bg-destructive text-destructive-foreground px-2.5 py-1 rounded-md text-xs font-semibold">
+                      Sale
+                    </span>
+                  )}
+                  <span className="absolute top-3 left-3 bg-background/80 backdrop-blur-sm text-foreground px-2.5 py-1 rounded-md text-xs font-medium">
+                    {prod.category}
+                  </span>
                 </div>
                 {/* Product Info */}
-                <div className="p-4 space-y-3">
-                  <h3 className="font-semibold text-lg">Premium Product {i}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    High-quality product with exceptional design and
-                    functionality
-                  </p>
-                  <div className="flex items-center justify-between pt-2">
-                    <span className="font-bold text-lg">
-                      ${(99.99 + i * 10).toFixed(2)}
-                    </span>
+                <div className="p-4 space-y-3 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
+                      {prod.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
+                      {prod.description}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-bold text-lg">
+                        ${prod.price.toFixed(2)}
+                      </span>
+                      {prod.originalPrice && (
+                        <span className="text-sm text-muted-foreground line-through">
+                          ${prod.originalPrice.toFixed(2)}
+                        </span>
+                      )}
+                    </div>
                     <Button size="sm" variant="default">
-                      Add to Cart
+                      View Product
                     </Button>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -97,22 +184,25 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-2">
-              <h3 className="font-semibold text-lg">Free Shipping</h3>
+            <div className="space-y-2 flex flex-col items-center">
+              <Truck className="w-8 h-8 text-primary mb-2" />
+              <h3 className="font-semibold text-lg">Free Express Shipping</h3>
               <p className="text-sm text-muted-foreground">
-                On orders over $50. Fast and reliable delivery
+                On orders over $50. Fast, insured and carbon-neutral delivery
               </p>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 flex flex-col items-center">
+              <ShieldCheck className="w-8 h-8 text-primary mb-2" />
               <h3 className="font-semibold text-lg">Secure Checkout</h3>
               <p className="text-sm text-muted-foreground">
-                Your payment information is always protected
+                Your payment and personal details are encrypted and protected
               </p>
             </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold text-lg">Easy Returns</h3>
+            <div className="space-y-2 flex flex-col items-center">
+              <Sparkles className="w-8 h-8 text-primary mb-2" />
+              <h3 className="font-semibold text-lg">Artisan Craftsmanship</h3>
               <p className="text-sm text-muted-foreground">
-                30-day return policy with no questions asked
+                Premium materials, ethical sourcing, and 30-day hassle-free returns
               </p>
             </div>
           </div>
