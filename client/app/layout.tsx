@@ -11,9 +11,9 @@ const geistSans = Geist({ subsets: ["latin"] });
 const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NexusCommerce - Modern E-Commerce Platform",
+  title: "Velora — Modern E-Commerce & Apparel Store",
   description:
-    "Discover premium products on NexusCommerce. Fast shipping, secure checkout, and exceptional customer service.",
+    "Discover premium apparel, footwear, and luxury accessories on Velora. Fast shipping, secure checkout, and artisan craftsmanship.",
   generator: "v0.app",
   icons: {
     icon: [

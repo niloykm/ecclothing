@@ -81,13 +81,13 @@ export default function Home() {
               secure checkout, and exceptional craftsmanship.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link href="/catalog">
+              <Link href="/collection">
                 <Button size="lg" className="w-full sm:w-auto">
-                  Start Shopping
+                  Explore Collection
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
-              <Link href="/catalog?category=new">
+              <Link href="/collection?category=new">
                 <Button
                   size="lg"
                   variant="outline"
@@ -171,9 +171,9 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/catalog">
+            <Link href="/collection">
               <Button size="lg" variant="outline">
-                View All Products
+                View Full Collection
               </Button>
             </Link>
           </div>

@@ -24,10 +24,10 @@ export default function Header() {
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-            <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
-              NC
+            <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-sm">
+              V
             </div>
-            <span className="hidden sm:inline">NexusCommerce</span>
+            <span className="hidden sm:inline tracking-tight font-extrabold">Velora</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -37,6 +37,12 @@ export default function Header() {
               className="text-sm font-medium hover:text-primary transition-colors"
             >
               Shop
+            </Link>
+            <Link
+              href="/collection"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              Collection
             </Link>
             <Link
               href="/catalog?category=new"
@@ -132,6 +138,12 @@ export default function Header() {
               className="block py-2 text-sm font-medium hover:text-primary transition-colors"
             >
               Shop
+            </Link>
+            <Link
+              href="/collection"
+              className="block py-2 text-sm font-medium hover:text-primary transition-colors"
+            >
+              Collection
             </Link>
             <Link
               href="/catalog?category=new"

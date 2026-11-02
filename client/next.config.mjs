@@ -5,7 +5,21 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
   },
-}
+  async rewrites() {
+    return [
+      {
+        source: "/collection",
+        destination: "/catalog",
+      },
+    ];
+  },
+};
 
-export default nextConfig
+export default nextConfig;

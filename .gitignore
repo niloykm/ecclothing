@@ -12,3 +12,5 @@ server/dev.sqlite
 dist/
 
 client/node_modules/
+.vercel
+.env*

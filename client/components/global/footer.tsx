@@ -8,13 +8,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 font-bold text-lg">
-              <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
-                NC
+              <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-sm">
+                V
               </div>
-              <span>NexusCommerce</span>
+              <span className="font-extrabold tracking-tight">Velora</span>
             </div>
             <p className="text-sm opacity-75">
-              Your trusted destination for premium products and exceptional shopping experiences.
+              Curated luxury apparel, footwear, and accessories. Premium craftsmanship and zero-latency shopping experiences.
             </p>
           </div>
 
@@ -22,6 +22,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Shop</h3>
             <ul className="space-y-2 text-sm opacity-75">
+              <li>
+                <Link href="/collection" className="hover:opacity-100 transition-opacity">
+                  All Collections
+                </Link>
+              </li>
               <li>
                 <Link href="/catalog" className="hover:opacity-100 transition-opacity">
                   All Products
@@ -102,7 +107,7 @@ export default function Footer() {
 
         {/* Divider */}
         <div className="border-t border-border/50 pt-8">
-          <p className="text-center text-sm opacity-50">© 2026 NexusCommerce. All rights reserved.</p>
+          <p className="text-center text-sm opacity-50">© 2026 Velora Store. All rights reserved.</p>
         </div>
       </div>
     </footer>
